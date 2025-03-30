@@ -1,5 +1,4 @@
-import zipfile
+import tensorflow as tf
+print(tf.__version__)
 
-zip_path = "artifacts/data_ingestion/data.zip"
 
-print(zipfile.is_zipfile(zip_path))
