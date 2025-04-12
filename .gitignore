@@ -172,5 +172,9 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
-artifacts/data_ingestion
+/artifacts
+/mlruns
 *.zip
+*.h5
+*.jpg
+*.csv
