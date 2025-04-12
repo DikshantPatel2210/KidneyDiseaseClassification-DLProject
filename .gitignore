@@ -173,7 +173,6 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 /artifacts
-/mlruns
 *.zip
 *.h5
 *.jpg
@@ -181,3 +180,4 @@ cython_debug/
 !artifacts/
 !artifacts/data_ingestion.dvc
 artifacts/data_ingestion/**
+/mlruns
