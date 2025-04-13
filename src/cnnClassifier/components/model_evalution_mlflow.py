@@ -6,7 +6,8 @@ import mlflow.keras
 from urllib.parse import urlparse
 from cnnClassifier.utils.common import read_yaml, create_directories, save_json
 from cnnClassifier.entity.config_entity import EvaluationConfig
-
+import dagshub
+dagshub.init(repo_owner='DikshantPatel2210', repo_name='KidneyDiseaseClassification-DLProject', mlflow=True)
 
 class Evaluation:
     def __init__(self, config: EvaluationConfig):
@@ -59,6 +60,7 @@ class Evaluation:
             mlflow.log_metrics(
                 {"loss": self.score[0], "accuracy": self.score[1]}
             )
+            print("Run ID:", mlflow.active_run().info.run_id)
             # Model registry does not work with file store
             if tracking_url_type_store != "file":
 
