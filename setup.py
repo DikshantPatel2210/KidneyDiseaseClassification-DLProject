@@ -9,7 +9,7 @@ __version__ = "0.0.0"
 REPO_NAME = "Kidney-Disease-Classification-Deep-Learning-Project"
 AUTHOR_USER_NAME = "DikshantPatel"
 SRC_REPO = "cnnClassifier"
-AUTHOR_EMAIL = "Dikshantpatel2210@gmai.com"
+AUTHOR_EMAIL = "Dikshantpatel2210@gmail.com"
 
 
 
