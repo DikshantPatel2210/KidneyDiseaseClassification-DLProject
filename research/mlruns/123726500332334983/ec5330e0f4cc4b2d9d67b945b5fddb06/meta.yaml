@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/DIKSHANT%20PATEL/Kidney-Disease-Classification/research/mlruns/123726500332334983/ec5330e0f4cc4b2d9d67b945b5fddb06/artifacts
+end_time: 1744790511189
+entry_point_name: ''
+experiment_id: '123726500332334983'
+lifecycle_stage: active
+run_id: ec5330e0f4cc4b2d9d67b945b5fddb06
+run_name: auspicious-bear-386
+run_uuid: ec5330e0f4cc4b2d9d67b945b5fddb06
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744790511165
+status: 4
+tags: []
+user_id: DIKSHANT PATEL
