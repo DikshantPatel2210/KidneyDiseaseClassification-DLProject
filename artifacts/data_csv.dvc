@@ -1,0 +1,6 @@
+outs:
+- md5: a089ff850edb820b4593e948669274ac.dir
+  size: 1742132
+  nfiles: 1
+  hash: md5
+  path: data_csv

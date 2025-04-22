@@ -1,4 +1,6 @@
 /prepare_base_model
 /data_ingestion
 /training
-/data_preprocessing
+/data_csv
+/data_split
+/checkpoints
