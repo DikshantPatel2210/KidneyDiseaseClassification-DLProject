@@ -9,7 +9,7 @@ from box import ConfigBox
 from pathlib import Path
 from typing import Any
 import base64
-
+import pandas as pd
 
 @ensure_annotations
 def read_yaml(path_to_yaml: Path) -> ConfigBox:
@@ -34,6 +34,20 @@ def read_yaml(path_to_yaml: Path) -> ConfigBox:
         raise ValueError("yaml file is empty")
     except Exception as e:
         raise e
+
+@ensure_annotations
+def save_dataframe_to_csv(
+    df: pd.DataFrame,
+    filepath: Path,
+    index: bool,
+    verbose: bool = True
+):
+    filepath = Path(filepath)
+    filepath.parent.mkdir(parents=True, exist_ok=True)
+    df.to_csv(filepath, index=index)
+    if verbose:
+        logger.info(f"CSV file saved at: {filepath}")
+
 
 
 @ensure_annotations

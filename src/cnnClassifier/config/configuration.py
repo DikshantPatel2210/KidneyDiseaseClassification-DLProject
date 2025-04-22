@@ -1,6 +1,8 @@
 from cnnClassifier.constants import *
 from cnnClassifier.utils.common import read_yaml, create_directories, save_json
-from cnnClassifier.entity.config_entity import (DataIngestionConfig,PrepareBaseModelConfig,TrainingConfig, EvaluationConfig )
+from cnnClassifier.entity.config_entity import (DataIngestionConfig,PrepareBaseModelConfig,
+                                                TrainingConfig, EvaluationConfig, MakeDataCSVConfig,
+                                                DataSplitConfig,DataLoaderConfig, CallbacksConfig )
 import os
 
 class ConfigurationManager:
@@ -22,6 +24,72 @@ class ConfigurationManager:
             unzip_dir=config.unzip_dir
         )
         return data_ingestion_config
+
+    def get_make_data_csv_config(self) -> MakeDataCSVConfig:
+        config = self.config.make_data_csv
+
+        create_directories([config.root_dir])
+        make_data_csv_config = MakeDataCSVConfig(
+            root_dir=config.root_dir,
+            base_csv_file=config.base_csv_file,
+            source_file_path=config.source_file_path,
+        )
+
+        return make_data_csv_config
+
+    def get_data_split_config(self) -> DataSplitConfig:
+        config = self.config.data_split
+        label_mapping = self.params["label_mapping"]
+        create_directories([config.root_dir])
+        data_split_config = DataSplitConfig(
+            root_dir=config.root_dir,
+            base_csv_path=config.base_csv_path,
+            train_csv_path=config.train_csv_path,
+            val_csv_path=config.val_csv_path,
+            test_csv_path=config.test_csv_path,
+            test_size=config.test_size,
+            random_state=config.random_state,
+            Normal=label_mapping["Normal"],
+            Cyst= label_mapping["Cyst"],
+            Tumor=label_mapping["Tumor"],
+            Stone=label_mapping["Stone"],
+        )
+        return data_split_config
+
+    def get_data_loader_config(self) -> DataLoaderConfig:
+        config = self.config.data_loader
+        params = self.params.data_loader
+        return DataLoaderConfig(
+            root_dir=config.root_dir,
+            train_data=config.train_data,
+            valid_data=config.valid_data,
+            test_data=config.test_data,
+            target_size=params.target_size,
+            batch_size=params.batch_size,
+            color_mode=params.color_mode,
+            class_mode=params.class_mode,
+            seed=params.seed,
+            rotation_range=params.rotation_range,
+            width_shift_range=params.width_shift_range,
+            height_shift_range=params.height_shift_range,
+            shear_range=params.shear_range,
+            zoom_range=params.zoom_range,
+            horizontal_flip=params.horizontal_flip,
+            fill_mode=params.fill_mode
+        )
+
+    def get_callbacks_config(self) -> CallbacksConfig:
+        callbacks_config = self.config.callbacks
+        training_params = self.params.training
+
+        create_directories([callbacks_config.checkpoint_dir])
+
+        return CallbacksConfig(
+            checkpoint_path=training_params.checkpoint.filepath,
+            early_stopping_params=training_params.early_stopping,
+            reduce_lr_params=training_params.reduce_lr,
+            checkpoint_params=training_params.checkpoint
+        )
 
     def get_prepare_base_model_config(self) -> PrepareBaseModelConfig:
         config = self.config.prepare_base_model

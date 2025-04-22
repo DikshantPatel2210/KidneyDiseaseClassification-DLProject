@@ -1,0 +1,7 @@
+[core]
+    autostage = true
+    remote = origin
+['remote "origin"']
+    url = https://dagshub.com/DikshantPatel2210/KidneyDiseaseClassification-DLProject.dvc
+    auth = basic
+    user = DikshantPatel2210

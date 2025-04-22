@@ -1,5 +1,4 @@
 /prepare_base_model
-/data_ingestion
 /training
 /data_csv
 /data_split

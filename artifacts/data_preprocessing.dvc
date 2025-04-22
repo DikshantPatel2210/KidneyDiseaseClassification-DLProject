@@ -1,6 +1,0 @@
-outs:
-- md5: 63f7fc959ef230157c77ce5856d79c3b.dir
-  size: 1742132
-  nfiles: 1
-  hash: md5
-  path: data_preprocessing

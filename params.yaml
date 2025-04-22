@@ -6,3 +6,50 @@ EPOCHS: 1
 CLASSES: 4
 WEIGHTS: imagenet
 LEARNING_RATE: 0.003
+
+label_mapping:
+  Normal : 0
+  Cyst: 1
+  Tumor: 2
+  Stone: 3
+
+data_loader:
+  target_size: (224, 224)
+  batch_size: 32
+  color_mode: "grayscale"
+  class_mode: "categorical"
+  seed: 42
+  rotation_range: 10
+  width_shift_range: 0.1
+  height_shift_range: 0.1
+  shear_range: 0.1
+  zoom_range: 0.1
+  horizontal_flip: True
+  fill_mode: "nearest"
+
+training:
+  early_stopping:
+    patience: 20
+    min_delta: 0.001
+    baseline: 0.99
+    monitor: "val_accuracy"
+    mode: "max"
+    verbose: 1
+
+  reduce_lr:
+    factor: 0.5
+    patience: 3
+    min_lr: 1e-6
+    cooldown: 2
+    min_delta: 0.001
+    monitor: "val_loss"
+    mode: "min"
+    verbose: 1
+
+  checkpoint:
+    monitor: "val_objective"
+    mode: "max"
+    filepath: "artifacts/checkpoints/best_model.keras"
+    save_best_only: true
+    verbose: 1
+    save_weights_only: false
