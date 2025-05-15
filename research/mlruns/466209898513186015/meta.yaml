@@ -1,0 +1,6 @@
+artifact_location: file:///C:/Users/DIKSHANT PATEL/Kidney-Disease-Classification/research/mlruns/466209898513186015
+creation_time: 1745352873452
+experiment_id: '466209898513186015'
+last_update_time: 1745352873452
+lifecycle_stage: active
+name: CNN_Optuna1_MLFLOW

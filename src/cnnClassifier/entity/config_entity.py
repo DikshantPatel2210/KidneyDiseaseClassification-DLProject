@@ -28,7 +28,7 @@ class DataSplitConfig:
     Tumor:int
     Stone:int
 
-@dataclass
+@dataclass(frozen = True)
 class DataLoaderConfig:
     root_dir: str
     train_data: str
@@ -47,12 +47,38 @@ class DataLoaderConfig:
     horizontal_flip: bool
     fill_mode: str
 
-@dataclass
+@dataclass(frozen = True)
 class CallbacksConfig:
     checkpoint_path: str
     early_stopping_params: dict
     reduce_lr_params: dict
     checkpoint_params: dict
+
+@dataclass(frozen = True)
+class OptunaConfig:
+      min_n_conv_layers: int
+      max_n_conv_layers: int
+      min_n_dense_layers: int
+      max_n_dense_layers: int
+      optimizer: list
+      Conv2D_strides_size: list
+      MaxPooling2D_strides_size: list
+      filters: list
+      dense_units: list
+      Conv2D_kernel_size: list
+      MaxPooling2D_kernel_size: list
+      activation: list
+      metrics: list
+      epochs: int
+      loss: str
+
+@dataclass(frozen=True)
+class OptunaTestingConfig:
+    optuna_best_trained_model: str
+    test_data: str
+    mlflow_uri: str
+    optuna_test_scores: str
+
 
 @dataclass(frozen = True)
 class PrepareBaseModelConfig:

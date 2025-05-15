@@ -12,7 +12,7 @@ class DataLoaderPipeline:
         config = ConfigurationManager()
         data_loader_config = config.get_data_loader_config()
         data_loader = DataLoader(config=data_loader_config)
-        train_generator, valid_generator, test_generator, ori_train = data_loader.get_generators()
+        train_generator, valid_generator, test_generator,train_df, ori_train = data_loader.get_generators()
 
 if __name__ == "__main__":
     try:

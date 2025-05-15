@@ -2,7 +2,7 @@ from cnnClassifier.constants import *
 from cnnClassifier.utils.common import read_yaml, create_directories, save_json
 from cnnClassifier.entity.config_entity import (DataIngestionConfig,PrepareBaseModelConfig,
                                                 TrainingConfig, EvaluationConfig, MakeDataCSVConfig,
-                                                DataSplitConfig,DataLoaderConfig, CallbacksConfig )
+                                                DataSplitConfig,DataLoaderConfig, CallbacksConfig,OptunaConfig,OptunaTestingConfig )
 import os
 
 class ConfigurationManager:
@@ -91,6 +91,37 @@ class ConfigurationManager:
             checkpoint_params=training_params.checkpoint
         )
 
+    def get_Optuna_config(self) -> OptunaConfig:
+
+        Optuna_params = self.params.Optuna_tuning
+
+        return OptunaConfig(
+            min_n_conv_layers=Optuna_params.min_n_conv_layers,
+            max_n_conv_layers=Optuna_params.max_n_conv_layers,
+            min_n_dense_layers=Optuna_params.min_n_dense_layers,
+            max_n_dense_layers=Optuna_params.max_n_dense_layers,
+            optimizer=Optuna_params.optimizer,
+            Conv2D_strides_size=Optuna_params.Conv2D_strides_size,
+            MaxPooling2D_strides_size=Optuna_params.MaxPooling2D_strides_size,
+            filters=Optuna_params.filters,
+            dense_units=Optuna_params.dense_units,
+            Conv2D_kernel_size=Optuna_params.Conv2D_kernel_size,
+            MaxPooling2D_kernel_size=Optuna_params.MaxPooling2D_kernel_size,
+            activation=Optuna_params.activation,
+            metrics=Optuna_params.metrics,
+            epochs=Optuna_params.epochs,
+            loss=Optuna_params.loss,
+
+        )
+
+    def get_optuna_test_config(self) -> OptunaTestingConfig:
+        config = self.config.optuna_testing_model
+        return OptunaTestingConfig(
+            optuna_best_trained_model=config.optuna_best_trained_model,
+            test_data=config.test_data,
+            mlflow_uri=config.mlflow_uri,
+            optuna_test_scores = config.optuna_test_scores
+        )
     def get_prepare_base_model_config(self) -> PrepareBaseModelConfig:
         config = self.config.prepare_base_model
 

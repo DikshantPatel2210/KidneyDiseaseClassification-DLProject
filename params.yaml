@@ -31,15 +31,16 @@ training:
   early_stopping:
     patience: 20
     min_delta: 0.001
-    baseline: 0.99
+    #baseline: 0.99
     monitor: "val_accuracy"
     mode: "max"
     verbose: 1
+    restore_best_weights: True
 
   reduce_lr:
     factor: 0.5
     patience: 3
-    min_lr: 1e-6
+    min_lr: 0.000001
     cooldown: 2
     min_delta: 0.001
     monitor: "val_loss"
@@ -47,9 +48,27 @@ training:
     verbose: 1
 
   checkpoint:
-    monitor: "val_objective"
+    monitor: 'val_objective'
     mode: "max"
-    filepath: "artifacts/checkpoints/best_model.keras"
+    filepath: "artifacts/optuna_best_model/best_model.keras"
     save_best_only: true
     verbose: 1
+    save_freq: 'epoch'
     save_weights_only: false
+
+Optuna_tuning:
+  min_n_conv_layers: 3 #
+  max_n_conv_layers: 6 #
+  min_n_dense_layers: 2 #
+  max_n_dense_layers: 5 #
+  optimizer: ['adam', 'sgd'] #
+  Conv2D_strides_size: ["1x1", "2x2"] #
+  MaxPooling2D_strides_size: ["2x2"] #
+  filters: [32,64,128,512]
+  dense_units: [32,64,128,512]
+  Conv2D_kernel_size: ["3x3"] #
+  MaxPooling2D_kernel_size: ["2x2"] #
+  activation: ['relu','softmax']
+  loss: "categorical_crossentropy"  #
+  metrics: ["accuracy"]  #
+  epochs: 30  #
